@@ -1,44 +1,36 @@
 //SETUP
-let cell_size  = 90; //Pattern Block (values < 200 create interesting offsets)
-let n = 2 //Pattern Density
-let d = (cell_size/n)*(n+1);
-let offset = 75;
+let cell_size  = 130; //Pattern Block (values < 200 create interesting offsets)
+let n = 4 //Pattern Density
+let d = cell_size/n;
+let offset = 65;
 let dev = false; //show developer glyph when true
-let glide = false; //glide wallpaper
 
 //COLOURS
-let bgcolor = 'rgba(255, 0, 179, 0.29)'; //background color
-let color1 = 'rgb(149, 226, 200)'; //tri color
-let color2 = 'rgba(233, 255, 252, 0.15)'; //rect color
-let color3 = 'rgba(233, 218, 194, 0.02)'; //ellipse 2 color
-let color4 = 'rgb(255, 234, 0)'; //ellipse 1 color
+let bgcolor = 'rgb(241, 155, 33)'; //background color
+let color1 = 'rgba(185, 226, 229, 0.04)'; //tri color
+let color2 = 'rgba(42, 27, 44, 0.07)'; //rect color
+let color3 = 'rgba(241, 241, 193, 0.3)'; //ellipse 2 color
+let color4 = 'rgba(0, 0, 0, 0.04)'; //ellipse 1 color
 
 //STROKES
-let strokeColor1 = 'rgba(35, 22, 36, 0.05)'; //rect and custom shape stroke color
-let strokeColor2 = 'rgba(255, 255, 255, 0)'; //circles stroke color
-let strokeColor3 = 'rgba(34, 20, 29, 0.36)'; //ellipse 1 stroke color
-let strokeColor4 = 'rgba(255, 255, 255, 0)'; //conditional rectangle color
-let strokeModifier = 2400 //stroke modifier
+let strokeColor1 = 'rgba(255, 157, 157, 0.11)'; //rect and custom shape stroke color
+let strokeColor2 = 'rgba(229, 166, 227, 0.63)'; //ellipse 2 stroke color
+let strokeColor3 = 'rgba(255, 233, 172, 0.23)'; //ellipse 1 stroke color
+let strokeColor4 = 'rgba(0, 0, 0, 0.43)'; //ellipse 1 stroke color
+let strokeModifier = 3.2 //stroke modifier
 
 //MODIFIERS
 let elementWidth = 2*d;
 let elementHeight = 2*d;
-let e = 0.04 //shape element scale modifier
-let e2 = 104.975 //2nd ellipse sizemodifier
-let m = .099; //rect modifier
-let triangleSize = e*1900.3; //controls vertex location of triangle
-let rotateMod = 30; //rotation of triangle per loop
-let lineSize = 1.0; // modifier for conditional rectangle stroke
-
-
-
-
-//CODE
+let e = 1.4 //shape element scale modifier
+let e2 = 0.375 //2nd ellipse sizemodifier
+let m = 0.3; //rect modifier
+let triangleSize = e*20.3; //controls vertex location of triangle
+let rotateMod = -51; //rotation of triangle per loop
 
 function setup_wallpaper(pWallpaper) {
  if(dev == false){
-  pWallpaper.output_mode(GRID_WALLPAPER);
-  if(glide == true) {pWallpaper.output_mode(GLIDE_WALLPAPER);}
+  pWallpaper.output_mode(GLIDE_WALLPAPER);
   pWallpaper.show_guide(false);
 }
   
@@ -47,7 +39,7 @@ function setup_wallpaper(pWallpaper) {
   pWallpaper.show_guide(true);
  }
   
-  pWallpaper.resolution(A3);
+  pWallpaper.resolution(NINE_PORTRAIT);
   
 
   //Grid settings
@@ -58,10 +50,15 @@ function setup_wallpaper(pWallpaper) {
 }
 
 function wallpaper_background() {
-  background(bgcolor); 
+  background(bgcolor); //light honeydew green colour
 }
 
-function my_symbol() {
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+//noFill();
+//stroke('rgba(183, 162, 222, 0.75)');
+//strokeWeight(1.5);
+
+
 
 for (let i = 0; i < n+1; i++) {
   let r=i*d;
@@ -70,8 +67,8 @@ for (let i = 0; i < n+1; i++) {
   for (let k = 0; k < n+1; k++) {
     
 
-if(strokeModifier > 100) {lineSize = strokeModifier/10000}
-else {lineSize = strokeModifier/1000}
+
+     
   
     
     //Rect
@@ -99,8 +96,8 @@ else {lineSize = strokeModifier/1000}
      rotate(k * rotateMod); 
 
       stroke(strokeColor4);
-      strokeWeight(x*lineSize*strokeModifier);
-      fill(strokeColor4);
+      strokeWeight(x*0.1*strokeModifier);
+      noFill();
       rect((k*r)+(d*k),((k*r)/n)+(d*k), ((elementWidth*((e*0.01)*e2))*i), ((elementHeight*(e*2.4)*e2)*i*(1/x)))
       
       pop();

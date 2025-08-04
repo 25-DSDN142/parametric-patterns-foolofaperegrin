@@ -28,7 +28,7 @@ let e2 = 104.975 //2nd ellipse sizemodifier
 let m = .099; //rect modifier
 let triangleSize = e*1900.3; //controls vertex location of triangle
 let rotateMod = 30; //rotation of triangle per loop
-let lineSize = 1.0; // modifier for conditional rectangle stroke
+let lineSize = 1.0;
 
 
 
@@ -47,7 +47,7 @@ function setup_wallpaper(pWallpaper) {
   pWallpaper.show_guide(true);
  }
   
-  pWallpaper.resolution(A3);
+  pWallpaper.resolution(NINE_PORTRAIT);
   
 
   //Grid settings
@@ -58,10 +58,15 @@ function setup_wallpaper(pWallpaper) {
 }
 
 function wallpaper_background() {
-  background(bgcolor); 
+  background(bgcolor); //light honeydew green colour
 }
 
-function my_symbol() {
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+//noFill();
+//stroke('rgba(183, 162, 222, 0.75)');
+//strokeWeight(1.5);
+
+
 
 for (let i = 0; i < n+1; i++) {
   let r=i*d;
